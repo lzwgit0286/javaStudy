@@ -1,0 +1,9 @@
+1. 如何提交到git服务器。 目前服务器上没有对应的仓库
+动作前猜测: 先到git服务器创建对应的项目，然后关联
+问题：能否不在服务器端创建，而是由客户端直接创建然后去关联？
+
+操作： 本地创建了git仓库,
+实际可行方案：
+1.1 github上创建远程仓库javaStudy
+1.2 git remote add origin git@github.com:lzwgit0286/javaStudy.git
+1.3 git push -u origin master
