@@ -7,6 +7,23 @@ package lambda.atguigu;
 public class Employee {
     private int age;
     private String name;
+    private Double salary;
+    private Status status;
+
+    public Employee(int age, String name, Double salary, Status status) {
+        this.age = age;
+        this.name = name;
+        this.salary = salary;
+        this.status = status;
+    }
+
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
 
     public int getAge() {
         return age;
@@ -23,4 +40,12 @@ public class Employee {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }
+
+enum Status{
+    FREE, BUSY, VACATION
+}
+
+

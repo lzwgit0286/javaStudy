@@ -3,12 +3,14 @@ package lambda.atguigu;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 /**
  * @author zhuwu.long
@@ -62,7 +64,7 @@ public class LambdaTest {
      */
     @Test
     public void test4(){
-        List<Employee> sourceList = new ArrayList<>();
+     /*   List<Employee> sourceList = new ArrayList<>();
         Employee e1 = new Employee();
         e1.setName("sss");
 
@@ -71,7 +73,7 @@ public class LambdaTest {
 
         sourceList.add(e1);
         sourceList.add(e2);
-        predicateTest(sourceList, (x) -> x.getName().startsWith("s"));
+        predicateTest(sourceList, (x) -> x.getName().startsWith("s"));*/
     }
 
     private void predicateTest(List<Employee> sourceList, Predicate<Employee> predicate){
@@ -85,7 +87,53 @@ public class LambdaTest {
         for(Employee e : resultList){
             System.out.println(e.getName());
         }
-
     }
+
+    /**
+     * 测试stream map和flatmap
+     * map，接收Lambda，将元素转换成其他方式或提取信息。接收一个函数作为参数，该函数会应用到每个元素上，并将其映射成一个新的元素
+     * flatmap：接收一个函数作为参数，将流中的每个值转换成一个流，最后把所有元素的流组装成一个新
+     */
+    @Test
+    public void test5(){
+        List<String> ss = Arrays.asList("aaa","bbb","ccc");
+        //把元素全部变成大写
+        ss.stream().map((x) -> x.toUpperCase())
+//                    .forEach((y) -> System.out.print(y));
+                    .forEach(System.out::println);
+
+        //不使用flatmap ，把 "aaa","bbb","ccc"，转换成a,a,a,b,b,b,c,c,c.
+        //流里还是流。 需要嵌套来foreach
+        Stream<Stream<Character>> temp = ss.stream().map(LambdaTest::filterChars);
+        temp.forEach(
+                (x) -> {
+                    x.forEach(System.out::println);
+                }
+        );
+
+        //使用flatmap。 map和flatmap类似list的add一个list，和addAll一个list
+       ss.stream().flatMap(LambdaTest::filterChars).forEach(System.out::println);
+    }
+
+    /**
+     * 自然排序和自定义排序
+     * 自然排序：comparable接口， 自定义排序: comparator
+     */
+    @Test
+    public void test7(){
+        List<String> ss = Arrays.asList("aaa","bbb","ddd","ccc");
+        ss.stream().sorted().forEach(System.out::println);
+    }
+
+    public static Stream<Character> filterChars(String s){
+        List<Character> characters = new ArrayList<>();
+
+        for(Character c : s.toCharArray()){
+            characters.add(c);
+        }
+
+        return characters.stream();
+    }
+
 
 }

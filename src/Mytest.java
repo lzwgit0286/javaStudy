@@ -75,9 +75,14 @@ public class Mytest {
         System.out.println(orderNo2.substring(orderNo2.indexOf("-") + 1));
         System.out.println(orderNo2.substring(1));
 
-        List<String> ss = null;
+    /*    List<String> ss = null;
         String s1 = "afadsfadfdasf12345";
-        System.out.println(s1.substring(-3,0));
+        System.out.println(s1.substring(-3,0));*/
+
+        Calendar currentDate = Calendar.getInstance();
+        String year3 = String.valueOf(currentDate.get(Calendar.YEAR)).substring(3,4);
+        System.out.println(currentDate.get(Calendar.YEAR));
+        System.out.println(year3);
     }
 
 
