@@ -10,6 +10,14 @@ public class Employee {
     private Double salary;
     private Status status;
 
+    public Employee(String name){
+        this.name = name;
+    }
+
+    public Employee(){
+
+    }
+
     public Employee(int age, String name, Double salary, Status status) {
         this.age = age;
         this.name = name;
@@ -41,7 +49,23 @@ public class Employee {
         this.name = name;
     }
 
+    public Status getStatus() {
+        return status;
+    }
 
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                ", salary=" + salary +
+                ", status=" + status +
+                '}';
+    }
 }
 
 enum Status{

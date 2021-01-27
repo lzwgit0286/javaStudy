@@ -15,6 +15,7 @@ import java.util.stream.Stream;
 /**
  * @author zhuwu.long
  * @Date 2020/10/1 7:20
+ * 4大内置函数式接口
  */
 public class LambdaTest {
 
